@@ -81,6 +81,7 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style-rtl.css') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -120,7 +121,7 @@
 
     <!-- Template Functions -->
     <script src="{{ asset('assets/js/functions.js') }}"></script>
-
+    @yield('scripts')
 </body>
 
 </html>

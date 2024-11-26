@@ -25,7 +25,7 @@
                 <li class="nav-item ms-2 my-2">بخش محتوا</li>
 
                 <!-- menu item 2 -->
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link" data-bs-toggle="collapse" href="#collapsepage" role="button"
                         aria-expanded="false" aria-controls="collapsepage">
                         <i class="bi bi-basket fa-fw me-2"></i>دوره ها
@@ -38,13 +38,18 @@
                         <li class="nav-item"> <a class="nav-link" href="admin-course-detail.html">جزئیات</a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
                 <!-- Menu item 3 -->
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('category.index') ? 'active' : '' }}"
                         href="{{ route('category.index') }}">
                         <i class="fas fa-user-graduate fa-fw me-2"></i>دسته بندی ها</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('article.index') ? 'active' : '' }}"
+                        href="{{ route('article.index') }}">
+                        <i class="fas fa-user-graduate fa-fw me-2"></i>مقالات</a>
                 </li>
 
                 <!-- Menu item 4 -->

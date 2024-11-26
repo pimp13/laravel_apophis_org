@@ -1,17 +1,17 @@
 @extends('admin.layouts.master')
 
-@section('title', 'لیست دسته بندی ها')
+@section('title', 'لیست مقالات')
 
 @section('content')
     <!-- Title -->
     <div class="row mb-3">
         <div class="col-12 d-sm-flex justify-content-between align-items-center">
-            <h1 class="h3 mb-2 mb-sm-0 fs-5">لیست دسته بندی ها</h1>
-            <a href="{{ route('category.create') }}" class="btn btn-sm btn-primary mb-0">افزودن دسته بندی</a>
+            <h1 class="h3 mb-2 mb-sm-0 fs-5">لیست مقالات</h1>
+            <a href="{{ route('article.create') }}" class="btn btn-sm btn-primary mb-0">افزودن مقاله</a>
         </div>
     </div>
 
-    {{-- <!-- Course boxes START -->
+    <!-- Course boxes START -->
     <div class="row g-4 mb-4">
         <!-- Course item -->
         <div class="col-sm-6 col-lg-4">
@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <!-- Course boxes END --> --}}
+    <!-- Course boxes END -->
 
     <!-- Card START -->
     <div class="card bg-transparent border">
@@ -85,53 +85,69 @@
                     <!-- Table head -->
                     <thead>
                         <tr>
-                            <th scope="col" class="border-0 rounded-start">نام دسته بندی</th>
+                            <th scope="col" class="border-0 rounded-start">نام دوره</th>
+                            <th scope="col" class="border-0">نام مدرس</th>
+                            <th scope="col" class="border-0">تاریخ انتشار</th>
+                            <th scope="col" class="border-0">نوع</th>
+                            <th scope="col" class="border-0">قیمت</th>
                             <th scope="col" class="border-0">وضعیت</th>
-                            <th scope="col" class="border-0">اسلاگ</th>
                             <th scope="col" class="border-0 rounded-end">عملیات</th>
                         </tr>
                     </thead>
 
                     <!-- Table body START -->
                     <tbody>
-                        @foreach ($categories as $category)
-                            <tr>
-                                <td>
-                                    <div class="d-flex align-items-center position-relative">
-                                        <h6 class="table-responsive-title mb-0 ms-2">
-                                            <a href="#" class="stretched-link">{{ $category->name }}</a>
-                                        </h6>
+
+                        <!-- Table row -->
+                        <tr>
+                            <!-- Table data -->
+                            <td>
+                                <div class="d-flex align-items-center position-relative">
+                                    <!-- Image -->
+                                    <div class="w-60px">
+                                        <img src="assets/images/courses/4by3/08.jpg" class="rounded" alt="">
                                     </div>
-                                </td>
+                                    <!-- Title -->
+                                    <h6 class="table-responsive-title mb-0 ms-2">
+                                        <a href="#" class="stretched-link">دوره جامع آموزش Sketch</a>
+                                    </h6>
+                                </div>
+                            </td>
 
-                                <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="form-check form-switch form-check-md">
-                                            <input class="form-check-input"
-                                                hx-get="{{ route('category.status', $category->id) }}"
-                                                hx-target="#category_{{ $category->id }}" hx-swap="outerHTML"
-                                                type="checkbox" id="is_active" value="1" name="is_active"
-                                                @checked($category->is_active == 1)>
-                                            <span id="category_{{ $category->id }}">
-                                            </span>
-                                        </div>
+                            <!-- Table data -->
+                            <td>
+                                <div class="d-flex align-items-center mb-3">
+                                    <!-- Avatar -->
+                                    <div class="avatar avatar-xs flex-shrink-0">
+                                        <img class="avatar-img rounded-circle" src="assets/images/avatar/09.jpg"
+                                            alt="avatar">
                                     </div>
-                                </td>
+                                    <!-- Info -->
+                                    <div class="ms-2">
+                                        <h6 class="mb-0 fw-light">نیلوفر جلیلی</h6>
+                                    </div>
+                                </div>
+                            </td>
 
-                                <td>{{ $category->slug }}</td>
+                            <!-- Table data -->
+                            <td>28 آبان 1400</td>
 
-                                <td>
-                                    <a href="{{ route('category.edit', $category) }}" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">ویرایش</a>
-                                    <button onclick="confirmDelete({{ $category->id }})"
-                                        class="btn btn-sm btn-danger-soft mb-0">حذف</button>
-                                    <form id="delete_category_{{ $category->id }}"
-                                        action="{{ route('category.destroy', $category) }}" method="POST" class="d-none">
-                                        @csrf
-                                        @method('delete')
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
+                            <!-- Table data -->
+                            <td> <span class="badge text-bg-primary">مقدماتی</span> </td>
+
+                            <!-- Table data -->
+                            <td>120,000 تومان</td>
+
+                            <!-- Table data -->
+                            <td> <span class="badge bg-warning bg-opacity-15 text-warning">معلق</span> </td>
+
+                            <!-- Table data -->
+                            <td>
+                                <a href="#" class="btn btn-sm btn-success-soft me-1 mb-1 mb-md-0">تایید</a>
+                                <button class="btn btn-sm btn-secondary-soft mb-0">رد</button>
+                            </td>
+                        </tr>
+
 
                     </tbody>
                     <!-- Table body END -->
@@ -147,10 +163,19 @@
             <!-- Pagination START -->
             <div class="d-sm-flex justify-content-sm-between align-items-sm-center">
                 <!-- Content -->
-                <p class="mb-0 text-center text-sm-start">مجموع دسته بندی ها {{ $categories->count() }}</p>
+                <p class="mb-0 text-center text-sm-start">نمایش 1 تا 8 از 20</p>
                 <!-- Pagination -->
-                {{ $categories->links() }}
-
+                <nav class="d-flex justify-content-center mb-0" aria-label="navigation">
+                    <ul class="pagination pagination-sm pagination-primary-soft d-inline-block d-md-flex rounded mb-0">
+                        <li class="page-item mb-0"><a class="page-link" href="#" tabindex="-1"><i
+                                    class="fas fa-angle-right"></i></a></li>
+                        <li class="page-item mb-0"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item mb-0 active"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item mb-0"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item mb-0"><a class="page-link" href="#"><i class="fas fa-angle-left"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
             <!-- Pagination END -->
         </div>

@@ -1,13 +1,14 @@
 @extends('admin.layouts.master')
 
-@section('title', 'لیست دسته بندی ها')
+@section('title', 'ایجاد دسته بندی')
 
 @section('content')
     <!-- Title -->
     <div class="row mb-3">
         <div class="col-12 d-sm-flex justify-content-between align-items-center">
             <h1 class="h3 mb-2 mb-sm-0 fs-5">ایجاد دسته بندی جدید</h1>
-            <a href="{{ route('category.index') }}" class="btn btn-sm btn-dark-soft mb-0">بازگشت</a>
+            <a href="{{ route('category.index') }}" class="btn btn-sm dark-mode-item btn-light-soft mb-0">بازگشت</a>
+            <a href="{{ route('category.index') }}" class="btn btn-sm light-mode-item btn-dark-soft mb-0">بازگشت</a>
         </div>
     </div>
 

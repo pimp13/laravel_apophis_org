@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Content;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Route;
 
 class CategoryRequest extends FormRequest
 {
@@ -17,6 +19,7 @@ class CategoryRequest extends FormRequest
             "name" => ["required", "string", "max:50", "min:10"],
             "slug" => ["required", "string", "max:50", "min:5", "unique:categories,slug"],
             "description" => ["nullable", "string", "max:150", "min:20"],
+            "is_active" => ["in:0,1", "numeric"]
         ];
     }
 }
